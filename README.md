@@ -1,6 +1,6 @@
-# Minitest - a test framework for 1C:Element
+# Minitest - a test framework for [1C:Element](https://1cmycloud.com/)
 
-Фреймворк тестирования для 1С:Предприятие.Элемент.
+Фреймворк тестирования для [1С:Предприятие.Элемент](https://1cmycloud.com/).
 
 ## Быстрый старт
 
