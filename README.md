@@ -51,7 +51,7 @@
 https://your-domain/applications/your-app/tests
 ```
 
-2. Из командной строки с помощью curl. Например:
+2. Из командной строки с помощью `curl`. Например:
 
 ```sh
 curl -X POST https://your-domain/applications/your-app/api/tests
