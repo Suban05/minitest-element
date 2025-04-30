@@ -1,0 +1,29 @@
+name: 1cmycloud CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run CI
+        uses: Suban05/1cmycloud-ci-action@0.0.2
+        with:
+          config: |
+            version: 7.0.5-57
+            project_id: ${{ variables.PROJECT }}
+            login: ${{ secrets.LOGIN }}
+            password: ${{ secrets.PASSWORD }}
+            branch: main
+            actions:
+              -
+                name: Tests
+                title: Run tests
+                method: post
+                path: tests
