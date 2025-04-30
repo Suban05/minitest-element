@@ -1,4 +1,4 @@
-name: 1cmycloud
+name: CI
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  ci-1cmycloud:
+  CI:
     runs-on: ubuntu-latest
 
     steps:
