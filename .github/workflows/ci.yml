@@ -20,7 +20,7 @@ jobs:
             project_id: ${{ vars.PROJECT }}
             login: ${{ secrets.LOGIN }}
             password: ${{ secrets.PASSWORD }}
-            branch: main
+            branch: ${{ github.ref_name }}
             actions:
               -
                 name: Tests
