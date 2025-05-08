@@ -40,19 +40,25 @@
     ;)
 ;
 ```
+## Важно
+
+Название приложения, в котором будут запускаться тесты, должно иметь постфикс `-dev`.
+Например, `test-app-dev`.
+Это позволяет определить, что приложение находится в режиме разработки, чтобы запуск тестирования был возможен только в режиме разработки.
 
 ## Запуск
+
 
 Запустить тестирование можно несколькими способами:
 
 1. Из приложения, открыв ссылку в браузере. Например:
 
 ```
-https://your-domain/applications/your-app/tests
+https://your-domain/applications/your-app-dev/tests
 ```
 
 2. Из командной строки с помощью `curl`. Например:
 
 ```sh
-curl -X POST https://your-domain/applications/your-app/api/tests
+curl -X POST https://your-domain/applications/your-app-dev/api/tests
 ```
