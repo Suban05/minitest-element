@@ -24,6 +24,7 @@ jobs:
             login: ${{ secrets.LOGIN }}
             password: ${{ secrets.PASSWORD }}
             branch: ${{ github.ref_name }}
+            head_ref: ${{ github.head_ref }}
             actions:
               -
                 name: Tests
