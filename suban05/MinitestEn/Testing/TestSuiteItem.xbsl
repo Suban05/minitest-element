@@ -1,0 +1,4 @@
+@InSubsystem
+method GenerateId()
+    Id = "%{TestModule.ToString()}::Testing#%{Name.Replace(" ", "_")}"
+;

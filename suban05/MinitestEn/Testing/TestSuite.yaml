@@ -1,0 +1,12 @@
+ElementKind: Structure
+Id: c5737521-1079-48bc-bd94-d4abfe9d31b9
+Name: TestSuite
+VisibilityScope: InSubsystem
+Environment: ClientAndServer
+Fields:
+    -
+        Name: Tests
+        Type: Array<TestSuiteItem>
+    -
+        Name: TestModule
+        Type: Testing?

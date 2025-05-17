@@ -1,0 +1,16 @@
+@Global
+method Test(Name: String, Block: ()->ничто)
+    if Name.IsEmpty()
+        throw new ValidationException("The test name must not be empty")
+    ;
+    val Test = new TestSuiteItem(Name, Block, TestModule)
+    Test.GenerateId()
+    if ContainsTest(Test)
+        throw new ValidationException("Test \"%{Test.Id}\" is already exists")
+    ;
+    Tests.Add(Test)
+;
+
+method ContainsTest(Test: TestSuiteItem): Boolean
+    return False
+;

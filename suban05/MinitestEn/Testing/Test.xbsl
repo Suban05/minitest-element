@@ -1,0 +1,7 @@
+@InSubsystem
+@Implementation
+method Tests(This: TestSuite)
+    This.Test("checks 1 + 1", method() ->
+        
+    ;)
+;

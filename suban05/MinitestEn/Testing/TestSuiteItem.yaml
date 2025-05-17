@@ -1,0 +1,18 @@
+ElementKind: Structure
+Id: 8dcaead7-5766-4544-b83f-0a7fb3a0bc97
+Name: TestSuiteItem
+VisibilityScope: InSubsystem
+Environment: ClientAndServer
+Fields:
+    -
+        Name: Name
+        Type: String
+    -
+        Name: Block
+        Type: (()->ничто)?
+    -
+        Name: TestModule
+        Type: Testing?
+    -
+        Name: Id
+        Type: String
