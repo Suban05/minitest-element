@@ -1,7 +1,9 @@
 ElementKind: CommonModule
 Id: 681d2434-2b43-4342-8712-3b08b91205c4
-Name: Test
+Name: SimpleTest
 VisibilityScope: InSubsystem
+Import:
+    - Testing
 TypeOptions:
     Contracts:
         - Testing
