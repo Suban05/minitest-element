@@ -1,0 +1,208 @@
+@Global
+exception AssertionException
+;
+
+enum ExceptionKind
+    Throws
+    NotThrows
+;
+
+structure Comparison
+    var Kind: ComparisonKind?|String
+    var LeftValue: unknown
+    var RightValue: unknown
+;
+
+@Global
+method That(Value: unknown): Assert
+    this.Value = Value
+    
+    return this
+;
+
+@Global
+method Throws(Exception: Тип): Assert
+    return CheckException(ExceptionKind.Throws, Exception)
+;
+
+@Global
+method NotThrows(Exception: Тип): Assert
+    return CheckException(ExceptionKind.NotThrows, Exception)
+;
+
+@Global
+method Equals(Value: unknown): Assert
+    Compare(Value, method(Comparison) ->
+        Comparison.Kind = ComparisonKind.Equal
+        RightValueUndefinedToString(Comparison)
+        return this.Value == Value
+    ;)
+    return this
+;
+
+@Global
+method NotEquals(Value: unknown): Assert
+    Compare(Value, method(Comparison) ->
+        Comparison.Kind = ComparisonKind.NotEqual
+        RightValueUndefinedToString(Comparison)
+        return this.Value != Value
+    ;)
+    return this
+;
+
+@Global
+method Greater(Value: unknown): Assert
+    Compare(Value, method(Comparison) ->
+        Comparison.Kind = ComparisonKind.Greater
+        return this.Value > Value
+    ;)
+    return this
+;
+
+@Global
+method GreaterOrEquals(Value: unknown): Assert
+    Compare(Value, method(Comparison) ->
+        Comparison.Kind = ComparisonKind.GreaterOrEqual
+        return this.Value >= Value
+    ;)
+    return this
+;
+
+@Global
+method Less(Value: unknown): Assert
+    Compare(Value, method(Comparison) ->
+        Comparison.Kind = ComparisonKind.Less
+        return this.Value < Value
+    ;)
+    return this
+;
+
+@Global
+method LessOrEquals(Value: unknown): Assert
+    Compare(Value, method(Comparison) ->
+        Comparison.Kind = ComparisonKind.LessOrEqual
+        return this.Value <= Value
+    ;)
+    return this
+;
+
+@Global
+method Filled(): Assert
+    if IsValueIterated()
+        if Value.Empty()
+            throw new AssertionException(
+                "Ожидали, что %{Value} будет заполnotно, но это not так."
+            )
+        ;
+    ;
+    return this
+;
+
+@Global
+method Empty(): Assert
+    if IsValueIterated()
+        if not Value.Empty()
+            throw new AssertionException(
+                "Ожидали, что %{Value} будет пустым, но это not так."
+            )
+        ;
+    ;
+    return this
+;
+
+@Global
+method Contains(Value: unknown): Assert
+    if IsValueIterated()
+        Compare(Value, method(Comparison) ->
+            Comparison.Kind = ComparisonKind.Contains
+            return this.Value.Содержит(Value)
+        ;)
+    ;
+    return this
+;
+
+@Global
+method NotContains(Value: unknown): Assert
+    if IsValueIterated()
+        Compare(Value, method(Comparison) ->
+            Comparison.Kind = ComparisonKind.NotContains
+            return not this.Value.Содержит(Value)
+        ;)
+    ;
+    return this
+;
+
+@Global
+method IsTrue(): Assert
+    return Equals(Истина)
+;
+
+@Global
+method IsFalse(): Assert
+    return Equals(Ложь)
+;
+
+@Global
+method IsUndefined(): Assert
+    return Equals(Undefined)
+;
+
+@Global
+method IsNotUndefined(): Assert
+    return NotEquals(Undefined)
+;
+
+@Global
+method HasType(Тип: Тип): Assert
+    Compare(Тип, method(Comparison) ->
+        Comparison.Kind = ComparisonKind.Equal
+        return this.Value.GetType() == Тип
+    ;)
+    return this
+;
+
+method Compare(Value: unknown, ComparisonMethod: (Comparison) -> Boolean)
+    знч Comparison = new Comparison(LeftValue = this.Value, RightValue = Value)
+    if not ComparisonMethod(Comparison)
+        throw new AssertionException(
+            [
+                "Ожидали, что %{Comparison.LeftValue}",
+                "%{Comparison.Kind.Представление().ВНижнийРегистр()} %{Comparison.RightValue},",
+                "но это not так."
+            ].Соединить(" ")
+        )
+    ;
+;
+
+method CheckException(Вид: ExceptionKind, Exception: Тип): Assert
+    Compare(Value, method(Comparison) ->
+        знч Представления = {
+            ExceptionKind.Throws: "Выбрасывает",
+            ExceptionKind.NotThrows: "not выбрасывает"
+        }
+        Comparison.Kind = Представления[Вид]
+        Comparison.RightValue = Exception.Представление()
+        var ЕстьException = Ложь
+        try
+            Comparison.LeftValue()
+        catch Искл: Exception
+            ЕстьException = Искл.ПолучитьТип() == Exception
+        ;
+        
+        if Вид == ExceptionKind.NotThrows
+            ЕстьException = not ЕстьException
+        ;
+        return ЕстьException
+    ;)
+    return this
+;
+
+method IsValueIterated(): Boolean
+    return this.Value это Обходимое<unknown>
+;
+
+method RightValueUndefinedToString(Comparison: Comparison)
+    if Comparison.RightValue == Undefined
+        Comparison.RightValue = "Undefined"
+    ;
+;

@@ -1,0 +1,4 @@
+@Global
+method That(Value: unknown): Assert
+    return new Assert(Value).That(Value)
+;

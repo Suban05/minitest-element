@@ -1,0 +1,9 @@
+ElementKind: Structure
+Id: 01ae5e4a-157a-49e6-a57e-1940fb934c06
+Name: Assert
+VisibilityScope: InSubsystem
+Environment: ClientAndServer
+Fields:
+    -
+        Name: Value
+        Type: unknown

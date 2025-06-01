@@ -1,0 +1,17 @@
+ElementKind: Enumeration
+Id: 8ec26e10-dcac-4e62-aa43-b73dd55b8c25
+Name: TestStatus
+VisibilityScope: InSubsystem
+Items:
+    -
+        Id: af6fc22c-3446-4fe8-91b5-0ed9d1a6e52c
+        Name: Initialized
+    -
+        Id: 31ec4e07-0ae1-4d72-875a-edca033b3640
+        Name: Running
+    -
+        Id: c93a9a6a-01f7-46a8-a23e-322076001ca2
+        Name: Success
+    -
+        Id: ea72c306-3395-4e3e-99df-8cfff5a68d07
+        Name: Failure
