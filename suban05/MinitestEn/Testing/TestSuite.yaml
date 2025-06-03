@@ -10,3 +10,16 @@ Fields:
     -
         Name: TestModule
         Type: Testing?
+    -
+        Name: Results
+        Type: Array<TestExecutionResult>
+        ReadOnly: True
+    -
+        Name: BeforeEach
+        Type: TestSuiteItem?
+    -
+        Name: AfterEach
+        Type: TestSuiteItem?
+    -
+        Name: Status
+        Type: TestStatus

@@ -14,3 +14,50 @@ method Test(Name: String, Block: ()->ничто)
 method ContainsTest(Test: TestSuiteItem): Boolean
     return False
 ;
+
+@Global
+method BeforeEach(Content: ()->ничто)
+    BeforeEach = new TestSuiteItem("", Content)
+;
+
+@Global
+method AfterEach(Content: ()->ничто)
+    AfterEach = new TestSuiteItem("", Content)
+;
+
+@InSubsystem
+method Run()
+    Status = TestStatus.Running
+    var HadFailure = False
+    for Test in Tests
+        var Message: String
+        var CurrentStatus = TestStatus.Running
+        try
+            CallEventHandler(BeforeEach)
+            Test.Block()
+            CallEventHandler(AfterEach)
+            Message = "✅ %{Test.Name}"
+            CurrentStatus = TestStatus.Success
+        catch Exception: unknown
+            Message = "❌ %{Test.Name} - %{Exception.ToString()}"
+            HadFailure = True
+            CurrentStatus = TestStatus.Failure
+        ;
+        Results.Add(
+            new TestExecutionResult(
+                CurrentStatus,
+                Test.Name,
+                Message))
+    ;
+    if HadFailure
+        Status = TestStatus.Failure
+    else
+        Status = TestStatus.Success
+    ;
+;
+
+method CallEventHandler(Event: TestSuiteItem?)
+    if Event != Undefined
+        Event.Block()
+    ;
+;

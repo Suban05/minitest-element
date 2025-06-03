@@ -1,0 +1,27 @@
+ElementKind: Structure
+Id: c8c67441-df68-4d2e-8575-076cd59e8526
+Name: TestExecutionResult
+VisibilityScope: InSubsystem
+Environment: ClientAndServer
+Fields:
+    -
+        Name: Status
+        Type: TestStatus
+        Annotations:
+            -
+                Type: JsonProperty
+                Name: status
+    -
+        Name: Test
+        Type: String
+        Annotations:
+            -
+                Type: JsonProperty
+                Name: test
+    -
+        Name: Report
+        Type: String
+        Annotations:
+            -
+                Type: JsonProperty
+                Name: report

@@ -1,0 +1,27 @@
+ElementKind: Structure
+VisibilityScope: InSubsystem
+Id: d2fb32b0-c5b6-4917-a757-2a0717299c96
+Name: TestModuleExecutionResult
+Environment: ClientAndServer
+Fields:
+    -
+        Name: Status
+        Type: TestStatus
+        Annotations: 
+            -
+                Type: JsonProperty
+                Name: status
+    -
+        Имя: TestModule
+        Тип: Строка
+        Аннотации:
+            -
+                Тип: JsonСвойство
+                Имя: testModule
+    -
+        Имя: РезультатыВыполения
+        Тип: Массив<TestExecutionResult>
+        Аннотации:
+            -
+                Тип: JsonСвойство
+                Имя: results        

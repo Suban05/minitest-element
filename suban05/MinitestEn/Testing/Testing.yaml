@@ -3,3 +3,4 @@ Id: 51385532-db26-48bb-9a65-ed65f65846b5
 Name: Testing
 VisibilityScope: Global
 Environment: ClientAndServer
+Multiple: True

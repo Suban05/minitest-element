@@ -1,0 +1,29 @@
+ElementKind: Structure
+Id: 8b57c670-3a3c-49e1-a014-3c167af9b353
+Name: TestingResult
+VisibilityScope: InSubsystem
+Environment: ClientAndServer
+Fields:
+    -
+        Name: Status
+        Type: TestStatus
+        Annotations:
+            -
+                Type: JsonProperty
+                Name: status
+        DefaultValue: Success
+    -
+        Name: StatusCode
+        Type: Number
+        Annotations:
+            -
+                Type: JsonProperty
+                Name: code
+        DefaultValue: 0
+    -
+        Name: Results
+        Type: Array<TestModuleExecutionResult>
+        Annotations:
+            -
+                Type: JsonProperty
+                Name: results

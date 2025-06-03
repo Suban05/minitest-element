@@ -1,0 +1,25 @@
+@InSubsystem
+method Run(): TestingResult
+    val Results = new TestingResult()
+    var IsFailure = False
+    for Module in Testing.GetServices()
+        val Suite = new TestSuite(TestModule = Module)
+        Module.Tests(Suite)
+        Suite.Run()
+        if not IsFailure and Suite.Status == TestStatus.Failure
+            IsFailure = True
+        ;
+        Results.Results.Add(
+            new TestModuleExecutionResult(
+                Suite.Status,
+                Module.ToString(),
+                Suite.Results
+            )
+        )
+    ;
+    if IsFailure
+        Results.StatusCode = 1
+        Results.Status = TestStatus.Failure
+    ;
+    return Results
+;

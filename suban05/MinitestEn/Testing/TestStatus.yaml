@@ -6,6 +6,7 @@ Items:
     -
         Id: af6fc22c-3446-4fe8-91b5-0ed9d1a6e52c
         Name: Initialized
+        Default: True
     -
         Id: 31ec4e07-0ae1-4d72-875a-edca033b3640
         Name: Running
