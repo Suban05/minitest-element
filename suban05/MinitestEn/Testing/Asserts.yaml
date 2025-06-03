@@ -1,5 +1,5 @@
 ElementKind: CommonModule
-VisibilityScope: InSubsystem
 Id: 34b54639-6133-4365-9419-bd54ac73e274
 Name: Asserts
+VisibilityScope: Global
 Environment: ClientAndServer

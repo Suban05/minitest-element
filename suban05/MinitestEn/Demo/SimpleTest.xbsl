@@ -1,10 +1,9 @@
 import Testing
 
-
 @Global
 @Implementation
 method Tests(This: TestSuite)
     This.Test("checks 1 + 1", method() ->
-
+        Asserts.That(1 + 1).Equals(2)
     ;)
 ;
